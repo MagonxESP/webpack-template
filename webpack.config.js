@@ -32,6 +32,7 @@ module.exports = {
     ],
     devtool: 'source-map',
     resolve: {
+        extensions: ['.js', '.ts', '.jsx', '.tsx'],
         alias: {
             'vue$': 'vue/dist/vue.esm.js'
         }
@@ -43,12 +44,17 @@ module.exports = {
                 use: ['vue-loader']
             },
             {
-                test: /\.js$/,
+                test: /\.tsx?$/,
+                exclude: /node_modules/,
+                use: ['ts-loader']
+            },
+            {
+                test: /\.jsx?$/,
                 exclude: /node_modules/,
                 use: ['babel-loader']
             },
             {
-                test: /\.js$/,
+                test: /\.jsx?$/,
                 use: ['source-map-loader'],
                 enforce: 'pre'
             },
